@@ -7,8 +7,7 @@ import StatCard from '../../components/ui/StatCard';
 import ComplaintCard from '../../components/complaints/ComplaintCard';
 import EmptyState from '../../components/ui/EmptyState';
 import LoadingSpinner from '../../components/ui/LoadingSpinner';
-import { CATEGORIES } from '../../utils/constants';
-import { FileText, CheckCircle2, Clock, RefreshCw, PlusCircle, Sparkles, ChevronRight, Radio } from 'lucide-react';
+import { CheckCircle2, Clock, RefreshCw, PlusCircle, Sparkles, ChevronRight, Activity } from 'lucide-react';
 import { useSocket } from '../../context/SocketContext';
 
 const StudentDashboard = () => {
@@ -50,25 +49,24 @@ const StudentDashboard = () => {
         <div>
           <h1 className="page-title" style={{ marginBottom: 4 }}>Dash<span>board</span></h1>
           <p style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', margin: 0, display: 'flex', alignItems: 'center', gap: 5 }}>
-            Hey, <strong>{user?.name?.split(' ')[0]}</strong>
+            Hey, <strong>{user ? user.name?.split(' ')[0] : 'Guest'}</strong>
             <Sparkles size={14} color="var(--color-primary)" strokeWidth={2} style={{ flexShrink: 0 }} />
-            Here's your complaint overview
+            Explore the campus global issue board
           </p>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'rgba(75, 200, 122, 0.1)', padding: '6px 12px', borderRadius: 20, border: '1px solid rgba(75, 200, 122, 0.2)' }}>
-          <Radio size={14} color={connected ? '#4bc87a' : '#e84b4b'} className={connected ? 'pulse' : ''} />
-          <span style={{ fontSize: '0.75rem', fontWeight: 600, color: connected ? '#4bc87a' : '#e84b4b' }}>
-            {connected ? 'LIVE SYNC' : 'OFFLINE'}
-          </span>
         </div>
       </div>
 
       {/* Stat Cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 16, marginBottom: 32 }}>
-        <StatCard label="Reported" value={stats?.reported} icon={FileText} delay={0} />
-        <StatCard label="Resolved" value={stats?.resolved} icon={CheckCircle2} color="#4bc87a" delay={0.1} />
-        <StatCard label="Pending" value={stats?.pending} icon={Clock} color="#e8a84b" delay={0.2} />
-        <StatCard label="In Progress" value={stats?.['in-progress']} icon={RefreshCw} color="#4b9de8" delay={0.3} />
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+        gap: 16,
+        marginBottom: 32
+      }}>
+        <StatCard label="Pending" value={stats?.pending} icon={Clock} color="#6b7ab8" delay={0} />
+        <StatCard label="Assigned" value={stats?.assigned} icon={Activity} color="#e8a84b" delay={0.1} />
+        <StatCard label="In Progress" value={stats?.['in-progress']} icon={RefreshCw} color="#89abca" delay={0.2} />
+        <StatCard label="Resolved" value={stats?.resolved} icon={CheckCircle2} color="#6dac85" delay={0.3} />
       </div>
 
       {/* Recent Complaints */}
@@ -77,22 +75,21 @@ const StudentDashboard = () => {
           <div>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 700, margin: 0 }}>Recent Complaints</h2>
             <p style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)', margin: '2px 0 0' }}>
-              {stats?.total || 0} issues · {stats?.high || 0} high priority
+              {stats?.total || 0} issues
             </p>
           </div>
           <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
             <select id="category-filter" value={filter} onChange={e => setFilter(e.target.value)}
               style={{ background: '#fff', border: '1.5px solid var(--color-border)', borderRadius: 8, padding: '8px 12px', fontSize: '0.82rem', color: 'var(--color-text-secondary)', cursor: 'pointer', outline: 'none' }}>
               <option value="all">All Status</option>
-              <option value="reported">Reported</option>
               <option value="pending">Pending</option>
+              <option value="assigned">Assigned</option>
               <option value="in-progress">In Progress</option>
               <option value="resolved">Resolved</option>
-              <option value="rejected">Rejected</option>
             </select>
-            <button id="new-complaint-btn" className="btn-primary" onClick={() => navigate('/student/submit')}>
+            <button id="new-complaint-btn" className="btn-primary" onClick={() => user ? navigate('/student/submit') : navigate('/login')}>
               <PlusCircle size={15} strokeWidth={2} />
-              New Complaint
+              Submit Issue
             </button>
           </div>
         </div>
