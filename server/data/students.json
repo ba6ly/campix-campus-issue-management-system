@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Khanjan Haloi",
+    "rollNumber": "2581203054",
+    "email": "khanjanhaloi999@gmail.com",
+    "department": "General"
+  },
+  {
+    "name": "Erom Rebina Singha",
+    "rollNumber": "2481105735",
+    "email": "eromrebinasingha@gmail.com",
+    "department": "General"
+  },
+  {
+    "name": "Rimjim Panging",
+    "rollNumber": "2481105737",
+    "email": "rimjimpanging.siv@gmail.com",
+    "department": "General"
+  },
+  {
+    "name": "Bably Rangpi",
+    "rollNumber": "2581203051",
+    "email": "bablyrangpi@gmail.com",
+    "department": "General"
+  },
+  {
+    "name": "Akshita Patar",
+    "rollNumber": "2481105730",
+    "email": "akshitapatar@gmail.com",
+    "department": "General"
+  },
+  {
+    "name": "Rahul Sharma",
+    "rollNumber": "2581203052",
+    "email": "rahul.sharma@example.com",
+    "department": "General"
+  },
+  {
+    "name": "Priya Das",
+    "rollNumber": "2581203053",
+    "email": "priya.das@example.com",
+    "department": "General"
+  },
+  {
+    "name": "Ankit Roy",
+    "rollNumber": "2581203055",
+    "email": "ankit.roy@example.com",
+    "department": "General"
+  },
+  {
+    "name": "Sneha Bora",
+    "rollNumber": "2581203056",
+    "email": "sneha.bora@example.com",
+    "department": "General"
+  },
+  {
+    "name": "Ritam Saikia",
+    "rollNumber": "2581203057",
+    "email": "ritam.saikia@example.com",
+    "department": "General"
+  }
+]
